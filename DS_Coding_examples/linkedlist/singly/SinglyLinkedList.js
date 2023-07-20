@@ -170,21 +170,90 @@ class SinglyLinkedList {
         this.tail = initHead;
     }
 
+    rotate(count) {
+        if(count<0){
+            while(count<0){
+                this.unshift(this.pop().val);
+                count++;
+            }
+        }else{
+            while(count>0){
+                let t = this.head;
+                this.head = t.next;
+                this.tail.next=t;
+                this.tail = t;
+                this.tail.next=null;
+                count--;
+            }
+        }
+    }
+
 }
 
+
+/*
+var singlyLinkedList = new SinglyLinkedList;
+singlyLinkedList.push(5).push(10).push(15).push(20).push(25);
+console.log(singlyLinkedList.head.val); // 5
+console.log(singlyLinkedList.tail.val); // 25;
+ 
+singlyLinkedList.rotate(3);
+console.log(singlyLinkedList.head.val); // 20
+console.log(singlyLinkedList.head.next.val); // 25
+console.log(singlyLinkedList.head.next.next.val); // 5
+console.log(singlyLinkedList.head.next.next.next.val); // 10
+console.log(singlyLinkedList.head.next.next.next.next.val); // 15
+console.log(singlyLinkedList.tail.val); // 15
+console.log(singlyLinkedList.tail.next); // null
+*/
+
+var singlyLinkedList = new SinglyLinkedList;
+singlyLinkedList.push(5).push(10).push(15).push(20).push(25);
+console.log(singlyLinkedList.head.val); // 5
+console.log(singlyLinkedList.tail.val); // 25;
+ 
+console.log(singlyLinkedList.rotate(-1));
+console.log(singlyLinkedList.head.val); // 25
+console.log(singlyLinkedList.head.next.val); // 5
+console.log(singlyLinkedList.head.next.next.val); // 10
+console.log(singlyLinkedList.head.next.next.next.val); // 15
+console.log(singlyLinkedList.head.next.next.next.next.val); // 20
+console.log(singlyLinkedList.tail.val); // 20
+console.log(singlyLinkedList.tail.next); // null
+
+/*
+var singlyLinkedList = new SinglyLinkedList;
+singlyLinkedList.push(5).push(10).push(15).push(20).push(25);
+singlyLinkedList.head.val; // 5
+singlyLinkedList.tail.val; // 25;
+ 
+singlyLinkedList.rotate(1000);
+singlyLinkedList.head.val; // 5
+singlyLinkedList.head.next.val; // 10
+singlyLinkedList.head.next.next.val; // 15
+singlyLinkedList.head.next.next.next.val; // 20
+singlyLinkedList.head.next.next.next.next.val; // 25
+singlyLinkedList.tail.val; // 25
+singlyLinkedList.tail.next // null
+
+/*
+
+const list = new SinglyLinkedList();
+list.push(1).push(2).push(3).push(4).push(5);
+list.rotate(2);
+list.print();
 const list = new SinglyLinkedList();
 list.push(1).push(12).push(13);
 list.print();
-/*list.set(0, 100);
+list.set(0, 100);
 list.insert(1, 20);
 console.log(list.get(1));
 list.print();
 list.remove(1);
 console.log(list.get(1));
-list.print();*/
+list.print();
 list.reverse();
 list.print();
-/*
 console.log(list.get(2));
 console.log(list.pop());
 console.log(list.shift());
