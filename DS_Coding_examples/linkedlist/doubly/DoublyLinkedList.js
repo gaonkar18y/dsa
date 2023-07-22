@@ -151,11 +151,41 @@ class DoublyLinkedList{
 
         return node;
     }
+
+    reverse(){
+        let node = this.head;
+        let prevNode = null;
+        while(node){
+            const nextNode = node.next;
+            node.next = prevNode;
+            node.prev = nextNode;
+            prevNode = node;
+            node = nextNode;
+        }
+
+        this.tail = this.head;
+        this.head = prevNode;
+        return this;
+    }
+
+    print(){
+        const result = [];
+
+        let node = this.head;
+
+        while(node){
+            result.push(node.val);
+            node=node.next;
+        }
+        console.log(result);
+    }
 }
 const list = new DoublyLinkedList();
 list.push(1).push(2).push(3).push(4);
-console.log(list.remove(2));
-console.log(list);
+list.print();
+list.reverse();
+list.print();
+//console.log(list.remove(2));
 /*console.log(list.unshift(4));
 console.log(list.get(0));
 console.log(list.get(1))
