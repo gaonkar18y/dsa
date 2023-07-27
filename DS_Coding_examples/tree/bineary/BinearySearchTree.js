@@ -84,6 +84,66 @@ class BinearySearchTree{
             }
         }
     }
+
+    bfs(){
+        const result = [];
+        const queue = [];
+
+        if(this.root) queue.push(this.root);
+
+        while(queue.length>0){
+            const node = queue.shift();
+            result.push(node.value);
+            node.left && queue.push(node.left);
+            node.right && queue.push(node.right);
+        }
+
+        return result;
+    }
+
+    dfsPreOrder(){
+        const result = [];
+
+        const traverse = (node)=>{
+            if(!node) return;
+            result.push(node.value);
+            node.left && traverse(node.left);
+            node.right && traverse(node.right);
+        };
+
+        traverse(this.root);
+        return result;
+    }
+
+    dfsPostOrder(){
+        const result = [];
+
+        const traverse = (node)=>{
+            if(!node) return;
+            node.left && traverse(node.left);
+            node.right && traverse(node.right);
+            result.push(node.value);
+        };
+
+        traverse(this.root);
+        return result;
+    }
+
+    dfsInOrder(){
+        const result = [];
+
+        const traverse = (node)=>{
+            if(!node) return;
+            node.left && traverse(node.left);
+            result.push(node.value);
+            node.right && traverse(node.right);
+        };
+
+        traverse(this.root);
+        return result;
+    }
+
+
 }
 
 const bst = new BinearySearchTree();
@@ -96,7 +156,18 @@ bst.insert(9);
 bst.insert(22)
 bst.insert(11);
 
-console.log(JSON.stringify(bst));
+console.log(bst.bfs());
+console.log(bst.dfsPreOrder());
+console.log(bst.dfsPostOrder());
+console.log(bst.dfsInOrder());
+
+/**
+ *           10
+ *      8         12
+ *   6     9   11     22
+ */
+
+/*console.log(JSON.stringify(bst));
 
 console.log(bst.find(11));
-console.log(bst.find(15));
+console.log(bst.find(15));*/
